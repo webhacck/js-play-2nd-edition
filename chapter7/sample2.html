@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>mind-elixir-sample</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+<!--     width / heightのサイズは好みで調整してください -->
+    <div id="map" style="width:600px;height:300px"></div>
+    
+    <p>マインドマップをJSONファイルとしてダウンロードする場合は<a href="" id="output">コチラ</a>から</p>
+    
+    <p>JSONファイルを読み込む場合は以下のボタンからお願いします</p>
+    <input id="myfile" type="file" />
+    
+    
+ 
+    <script src="https://cdn.jsdelivr.net/npm/mind-elixir/dist/mind-elixir.js"></script>
+    <script>
+      const output = document.getElementById('output');
+      // const myfile = document.getElementById('myfile');
+      
+      //マインドマップの起動
+      let mind = new MindElixir({
+          el: '#map',
+          data: MindElixir.new('トピック')
+        })
+      mind.init();
+
+      
+      // 【ダウンロード機能】
+      output.addEventListener('click', () => {
+        //現在のマインドマップ要素をすべて取得する
+        const data = mind.getAllData();
+        //JSON形式に変換
+        const json = JSON.stringify(data);
+        //バイナリデータに変換する
+        const blob = new Blob([json], {type: 'application/json'});
+
+        //ダウンロードURLを生成する
+        output.href = URL.createObjectURL(blob);
+        
+        //「app.json」というファイル名にする
+        output.download = 'app.json';
+      });
+
+      
+      // 【ファイル読み込み機能】
+      // JSONファイルを読み込んで表示する
+      myfile.addEventListener('change', function(e) {
+        const reader = new FileReader();
+        console.log(e.target.files);
+        //読み込んだファイル情報を取得する
+        const result = e.target.files[0];
+
+        //ファイルの中身を読み込む
+        reader.readAsText(result);
+        
+        //ファイルの読み込みが完了したあとに実行する処理
+        reader.addEventListener('load', () => {
+          //「data」に読み込んだファイルの中身を当てはめる
+          mind = new MindElixir({
+            el: '#map',
+            data: JSON.parse(reader.result)
+          })
+          mind.init();
+        });
+      })
+      
+    </script>
+  </body>
+</html>
