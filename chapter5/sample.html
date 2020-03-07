@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello tetris</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Aerolab/blockrain.js/dist/blockrain.css" />
+  </head>
+  <body>
+    
+    <button id="stop">停止</button>
+    <button id="resume">再開</button>
+    <div class="game"></div>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Aerolab/blockrain.js/dist/blockrain.jquery.min.js"></script>
+    <script>
+
+      // 少し大きめのブロックサイズで
+      // CPUによる自動プレイの設定
+      $('.game').blockrain({
+        autoplay: true,
+        autoplayRestart: true,
+        showFieldOnStart: true,
+        autoBlockWidth: true,
+        autoBlockSize: 48,
+        theme: 'candy',
+        // blockWidth: 5,
+        // difficulty: 'normal',
+        // speed: 20,
+
+        // 日本語へのローカライズ
+        playText: 'テトリスで遊ぼう！',
+        playButtonText: 'プレイ',
+        gameOverText: 'ゲームオーバー',
+        restartButtonText: '再挑戦',
+        scoreText: 'スコア',
+
+        // 関数の記述はここから
+        onStart: function(){},
+        onRestart: function(){},
+        onGameOver: function(score){},
+        onLine: function(lines, scoreIncrement, score){}
+
+      });
+
+
+      // メソッドの実行はここから
+      const game = $('.game');
+
+      // 一時停止処理
+      $('#stop').on('click', function() {
+        game.blockrain('pause');
+        game.blockrain('controls', false);
+      })
+
+      // 再開処理
+      $('#resume').on('click', function() {
+        game.blockrain('resume');
+        game.blockrain('controls', true);
+      })
+
+
+    </script>
+  </body>
+</html>
