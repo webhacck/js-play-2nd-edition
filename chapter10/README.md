@@ -4,4 +4,4 @@
 
 本章の最後に実行結果としてログを確認するには、Glitchの画面下にある【Tools】から【Logs】をクリックして表示されるコンソールログで確認しましょう。
 
-![](https://github.com/webhacck/techbooks/blob/master/books-that-play-javascript-thoroughly/chapter8/image/1.jpg)
+![](https://github.com/webhacck/js-play-2nd-edition/blob/master/chapter10/image/1.jpg)
