@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>マインドマップのサンプル</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <!--     width / heightのサイズはお好みで調整しましょう -->
+    <div id="map" style="width:600px;height:300px"></div>
+    
+ 
+    <script src="https://cdn.jsdelivr.net/npm/mind-elixir/dist/mind-elixir.js"></script>
+    <script>
+      
+      //マインドマップの起動
+      let mind = new MindElixir({
+          el: '#map',
+          data: MindElixir.new('トピック')
+        })
+        
+      mind.init();
+
+    </script>
+  </body>
+</html>
