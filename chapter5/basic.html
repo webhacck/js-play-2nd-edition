@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello tetris</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Aerolab/blockrain.js/dist/blockrain.css" />
+    <style>
+      .game {
+        width: 250px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="game"></div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Aerolab/blockrain.js/dist/blockrain.jquery.min.js"></script>
+    <script>
+      $('.game').blockrain({
+
+        autoBlockWidth: true,
+
+      });
+    </script>
+  </body>
+</html>
