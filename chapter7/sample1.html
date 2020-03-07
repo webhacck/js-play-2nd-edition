@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>マインドマップ（ダウンロード機能あり）</title>
+  </head>
+  <body>
+
+    <!--     width / heightのサイズは好みで調整してください -->
+    <div id="map" style="width:600px;height:300px"></div>
+    
+    <p>マインドマップをJSONファイルとしてダウンロードする場合は<a href="" id="output">コチラ</a>から</p>
+    
+ 
+    <script src="https://cdn.jsdelivr.net/npm/mind-elixir/dist/mind-elixir.js"></script>
+    <script>
+      const output = document.getElementById('output');
+      
+      //マインドマップの起動
+      let mind = new MindElixir({
+          el: '#map',
+          data: MindElixir.new('トピック')
+        })
+      mind.init();
+
+      
+      
+      //データをJSONファイルとしてダウンロードする
+      output.addEventListener('click', () => {
+        //現在のマインドマップ要素をすべて取得する
+        const data = mind.getAllData();
+        //JSON形式に変換
+        const json = JSON.stringify(data);
+        //バイナリデータに変換する
+        const blob = new Blob([json], {type: 'application/json'});
+
+        //ダウンロードURLを生成する
+        output.href = URL.createObjectURL(blob);
+        
+        //「app.json」というファイル名にする
+        output.download = 'app.json';
+      });
+
+    </script>
+  </body>
+</html>
